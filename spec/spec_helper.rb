@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "disallow"
+require 'with_model'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -11,4 +12,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.before :suite do
+    ActiveRecord::Base.establish_connection :adapter => 'sqlite3', database: ':memory:'
+  end
+  config.extend WithModel
 end
