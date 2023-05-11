@@ -15,7 +15,16 @@ RSpec.describe Disallow do
 
         validates :title, presence: true
         validate :validate_empty_string
-        disallow_validations!
+
+
+        before_save do
+          puts "Test"
+        end
+
+        before_update :validate_empty_string
+
+        disallow_before_save_callback!
+
 
         def validate_empty_string
         end
