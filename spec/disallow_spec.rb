@@ -11,15 +11,22 @@ RSpec.describe Disallow do
       end
 
       model do
+        disallow_validations!
         default_scope { where(title: "test") }
 
         validates :title, presence: true
         validate :validate_empty_string
+
+
+        if __callbacks[:validate].present?
+          raise Disallow::Error
+        end
       end
     end
 
-    let!(:post) { Post.create!(title: "My very first post") }
-
+    before do
+      bindind.irb
+    end
     it "hello" do
     end
   end
