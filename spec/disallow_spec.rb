@@ -16,11 +16,6 @@ RSpec.describe Disallow do
 
         validates :title, presence: true
         validate :validate_empty_string
-
-
-        if __callbacks[:validate].present?
-          raise Disallow::Error
-        end
       end
     end
 
