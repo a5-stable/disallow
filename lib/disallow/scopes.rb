@@ -1,4 +1,3 @@
-
 require 'disallow/exceptions'
 
 module Disallow
