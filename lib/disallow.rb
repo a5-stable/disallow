@@ -2,8 +2,10 @@ require "disallow/version"
 require "active_record"
 
 module Disallow
-  class Error < StandardError; end
-  # Your code goes here...
+  module Error
+    class ValidationNotAllowed
+    end
+  end
 
   module Model
     def self.included(base)
@@ -19,7 +21,7 @@ module Disallow
       end
 
       # disallow default scope
-      def disallow_default_scopes!(options = {})
+      def disallow_default_scope!(options = {})
         if default_scopes.present?
           raise Disallow::Error
         end
@@ -37,7 +39,6 @@ module Disallow
 
       # disallow all callbacks
       def disallow_callbacks!
-        binding.irb
       end
     end
   end

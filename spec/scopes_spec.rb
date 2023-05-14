@@ -9,16 +9,16 @@ RSpec.describe "Disallow/scopes" do
 
       model do
         has_many :messages
-        default_scope { where.not(title: nil) }
       end
     end
 
     it "no callback" do
-      expect{ Post.disallow_default_scopes! }.not_to raise_error(Disallow::Error)
+      expect{ Post.disallow_default_scope! }.not_to raise_error
     end
 
     it "disallow default scope" do
-      expect{ Post.disallow_default_scopes! }.to raise_error(Disallow::Error)
+      Post.default_scopes = { where.not(title: nil) }
+      expect{ Post.disallow_default_scope! }.to raise_error
     end
   end
 end
