@@ -8,11 +8,25 @@ RSpec.describe "Disallow/validations" do
       end
 
       model do
+        has_many :messages
         def validate_title
           errors.add(:title) if title == "bad"
         end
       end
     end
+
+    with_model :Comment, scope: :all do
+      table do |t|
+        t.string :post_id
+        t.timestamps null: false
+      end
+
+      model do
+        belongs_to :post
+      end
+    end
+
+
 
     it "no validation" do
       expect{ Post.disallow_validations! }.not_to raise_error(Disallow::Error)
@@ -29,6 +43,8 @@ RSpec.describe "Disallow/validations" do
     end
 
     it "disallow `validates_associated`" do
+      Post.validates_associated(:comments)
+      expect{ Post.disallow_validations! }.to raise_error(Disallow::Error)
     end
   end
 end

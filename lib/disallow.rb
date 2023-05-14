@@ -35,7 +35,10 @@ module Disallow
         end
       end
 
-      # disallow 
+      # disallow all callbacks
+      def disallow_callbacks!
+        binding.irb
+      end
     end
   end
   ActiveRecord::Base.include Disallow::Model
