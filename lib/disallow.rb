@@ -6,8 +6,10 @@ require "disallow/version"
 
 module Disallow
   module Model
-    include Disallow::Scopes
-    include Disallow::Callbacks
+    module ClassMethods
+      include Disallow::Callbacks
+      include Disallow::Scopes
+    end
 
     def self.included(base)
       base.extend ClassMethods
