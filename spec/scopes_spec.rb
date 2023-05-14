@@ -30,8 +30,8 @@ RSpec.describe "Disallow/scopes" do
       end
     end
 
-    it "no callback" do
-      expect{ Post.disallow_default_scope! }.to raise_error
+    it "raises error" do
+      expect{ Post.disallow_default_scope! }.to raise_error(Disallow::Scopes::DefaultScopesError)
     end
   end
 end
