@@ -6,13 +6,9 @@ RSpec.describe "Disallow/scopes" do
         t.string :title
         t.timestamps null: false
       end
-
-      model do
-        has_many :messages
-      end
     end
 
-    it "no callback" do
+    it "does not raise error without default scopes" do
       expect{ Post.disallow_default_scope! }.not_to raise_error
     end
   end
@@ -26,12 +22,11 @@ RSpec.describe "Disallow/scopes" do
 
       model do
         default_scope { all }
-        has_many :messages
       end
     end
 
     it "raises error" do
-      expect{ Post.disallow_default_scope! }.to raise_error(Disallow::Scopes::DefaultScopesError)
+      expect{ Post.disallow_default_scope! }.to raise_error(Disallow::DefaultScopeError)
     end
   end
 end

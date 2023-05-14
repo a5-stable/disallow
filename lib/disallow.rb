@@ -6,6 +6,7 @@ require "active_record"
 module Disallow
   module Model
     include Disallow::Scopes
+
     def self.included(base)
       base.extend ClassMethods
     end

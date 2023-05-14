@@ -6,7 +6,7 @@ module Disallow
     module ClassMethods
       def disallow_default_scope!(options = {})
         if default_scopes.present?
-          raise Disallow::Scopes::DefaultScopesError
+          raise Disallow::DefaultScopeError.new(name)
         end
 
         @disallow_default_scope = true
@@ -14,7 +14,7 @@ module Disallow
 
       def default_scope(*args)
         if @disallow_default_scope
-          raise Disallow::Scopes::DefaultScopesError
+          raise Disallow::DefaultScopeError.new(name)
         end
 
         super(*args)
