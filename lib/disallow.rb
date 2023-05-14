@@ -25,6 +25,16 @@ module Disallow
         if default_scopes.present?
           raise Disallow::Error
         end
+
+        @disallow_default_scope = true
+      end
+
+      def default_scope(*args)
+        if @disallow_default_scope
+          raise "error"
+        end
+
+        super(*args)
       end
 
       # disallow each callback
