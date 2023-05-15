@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    disallow (0.1.0)
+    disallow (0.1.1)
       activerecord
 
 GEM
@@ -55,4 +55,4 @@ DEPENDENCIES
   with_model
 
 BUNDLED WITH
-   2.1.4
+   2.4.13
