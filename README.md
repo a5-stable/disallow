@@ -25,7 +25,7 @@ Or install it yourself as:
 You can use this gem by just adding the methods to your model.
 
 1. To disallow all callbacks in a model, use disallow_callbacks!:
-```
+```ruby
 class MyModel < ActiveRecord::Base
   disallow_callbacks!
 
@@ -35,7 +35,7 @@ end
 ```
 
 2. To disallow specific callbacks, use disallow_XXX_callbacks!, where XXX is the name of the callback:
-```
+```ruby
 class MyModel < ActiveRecord::Base
   disallow_before_save_allbacks!
   disallow_after_create_callbacks!
@@ -51,7 +51,7 @@ end
 ### scopes
 
 To disallow default scope definitions, use disallow_default_scope!:
-```
+```ruby
 class MyModel < ActiveRecord::Base
   disallow_default_scope!
   default_scope { where(title: nil) }
