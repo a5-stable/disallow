@@ -1,8 +1,6 @@
 # Disallow
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/disallow`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+`disallow` gem is a utility for Ruby on Rails that allows you to restrict the usage of default scopes and callbacks in your ActiveRecord models. 
 
 ## Installation
 
@@ -22,7 +20,44 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Callbacks
+
+You can use this gem by just adding the methods to your model.
+
+1. To disallow all callbacks in a model, use disallow_callbacks!:
+```
+class MyModel < ActiveRecord::Base
+  disallow_callbacks!
+
+  before_save :do_something
+  #=> raise Disallow::CallbackError
+end
+```
+
+2. To disallow specific callbacks, use disallow_XXX_callbacks!, where XXX is the name of the callback:
+```
+class MyModel < ActiveRecord::Base
+  disallow_before_save_allbacks!
+  disallow_after_create_callbacks!
+
+  before_save :do_something
+  #=> raise Disallow::CallbackError
+
+  after_save :do_something
+  #=> ok
+end
+```
+
+### scopes
+
+To disallow default scope definitions, use disallow_default_scope!:
+```
+class MyModel < ActiveRecord::Base
+  disallow_default_scope!
+  default_scope { where(title: nil) }
+  #=> raise Disallow::DefaultScopeError
+end
+```
 
 ## Development
 
@@ -32,7 +67,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/disallow. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/disallow/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/a5-stable/disallow. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/disallow/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
@@ -41,4 +76,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Disallow project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/disallow/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Disallow project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/a5-stable/disallow/blob/master/CODE_OF_CONDUCT.md).

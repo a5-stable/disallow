@@ -6,8 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["a5-stable"]
   spec.email         = ["sh07e1916@gmail.com"]
 
-  spec.summary       = "SUMMARY HERE"
-  spec.description   = "DESCRIPTION HERE"
+  spec.summary       = "disallow certain features in ActiveRecord models such as `default_scope`` and `callbacks`"
   spec.homepage      = "https://github.com/a5-stable/disallow"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
