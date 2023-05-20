@@ -14,4 +14,7 @@ module Disallow
       super("#{sbj} not allowed on #{class_name}")
     end
   end
+
+  class ValidationError < Error
+  end
 end
